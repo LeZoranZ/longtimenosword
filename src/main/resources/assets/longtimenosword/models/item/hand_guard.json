@@ -1,0 +1,7 @@
+{
+  "loader": "tconstruct:material",
+  "parent": "forge:item/default",
+  "textures": {
+    "texture": "longtimenosword:item/tool/parts/hand_guard"
+  }
+}

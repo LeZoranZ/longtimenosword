@@ -1,0 +1,8 @@
+{
+  "type": "tconstruct:table_casting_material",
+  "cast": {
+    "tag": "longtimenosword:casts/multi_use/hand_guard"
+  },
+  "item_cost": 1,
+  "result": "longtimenosword:hand_guard"
+}

@@ -1,0 +1,16 @@
+{
+  "type": "tconstruct:part_builder",
+  "cost": 1,
+  "pattern": "longtimenosword:hand_guard",
+  "pattern_item": [
+    {
+      "tag": "tconstruct:patterns/default"
+    },
+    {
+      "item": "longtimenosword:hand_guard_cast"
+    }
+  ],
+  "result": {
+    "item": "longtimenosword:hand_guard"
+  }
+}

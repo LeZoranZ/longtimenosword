@@ -1,0 +1,11 @@
+{
+  "item.longtimenosword.hand_guard":"Hand Guard",
+  "pattern.longtimenosword.hand_guard": "Hand Guard",
+  "item.longtimenosword.hand_guard_cast":"Hand Guard Gold Cast",
+  "item.longtimenosword.hand_guard_sand_cast":"Hand Guard Sand Cast",
+  "item.longtimenosword.hand_guard_red_sand_cast":"Hand Guard Red Sand Cast",
+
+  "item.longtimenosword.longsword":"Longsword",
+  "item.longtimenosword.longsword.description":"The Longsword is a weapon especially suited for dueling and charging in and out of battle due to its unique capabilities.",
+  "itemGroup.longtimenosword":"Long Time No Sword"
+}
