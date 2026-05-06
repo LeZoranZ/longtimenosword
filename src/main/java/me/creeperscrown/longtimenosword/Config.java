@@ -122,7 +122,7 @@ public class Config
             .comment("The type of scaling to use for the charge bar")
             .comment("Options: LINEAR, QUADRATIC, CUBIC, SQRT, QUADRATIC_EASE_OUT, EASE_IN_OUT, SINE, ELASTIC")
             .comment("Default: QUADRATIC")
-            .define("charge_bar_scaling", "ease-in-out");
+            .define("charge_bar_scaling", "quadratic");
 
     static final ForgeConfigSpec SPEC = BUILDER.build();
 
