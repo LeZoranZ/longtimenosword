@@ -1,0 +1,27 @@
+{
+  "loader": "tconstruct:tool",
+  "parent": "forge:item/default-tool",
+  "textures": {
+    "head": "longtimenosword:item/tool/longsword/broken_blade",
+    "hand_guard": "longtimenosword:item/tool/longsword/hand_guard",
+    "handle": "longtimenosword:item/tool/longsword/handle"
+  },
+  "modifier_roots": [
+    "longtimenosword:item/tool/longsword/modifiers/broken/",
+    "longtimenosword:item/tool/longsword/modifiers/"
+  ],
+  "parts": [
+    {
+      "name": "handle",
+      "index": 1
+    },
+    {
+      "name": "head",
+      "index": 0
+    },
+    {
+      "name": "hand_guard",
+      "index": 2
+    }
+  ]
+}

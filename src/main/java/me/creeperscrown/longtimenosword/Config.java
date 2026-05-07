@@ -10,51 +10,56 @@ public class Config
 {
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
+    private static final ForgeConfigSpec.BooleanValue PREVENT_LUNGE = BUILDER
+            .comment("Should broken tools prevent you from using the lunge ability?")
+            .comment("Default: false")
+            .comment("Old Tinkers': false")
+            .define("prevent_lunge", false);
     private static final ForgeConfigSpec.IntValue LUNGE_MIN_HOLD = BUILDER
             .comment("The minimum amount of time a player needs to hold right click to perform a lunge attack (in ticks)")
             .comment("Default: 5")
-            .comment("Old Tinker's: 5")
+            .comment("Old Tinkers': 5")
             .comment("NOTE: Set no higher than 'lunge_max_hold' or 'riptide_threshold' (if using 'perform_riptide_attack')")
             .defineInRange("lunge_min_hold", 5, 0, Integer.MAX_VALUE);
     private static final ForgeConfigSpec.IntValue LUNGE_MAX_HOLD = BUILDER
             .comment("How long the player can hold right click before the longsword resets (in ticks)")
             .comment("Default: 200")
-            .comment("Old Tinker's: 200")
+            .comment("Old Tinkers': 200")
             .defineInRange("lunge_max_hold", 200, 0, Integer.MAX_VALUE);
     private static final ForgeConfigSpec.IntValue LUNGE_CD = BUILDER
             .comment("Longsword lunge ability cooldown (in ticks)")
             .comment("Default: 0")
-            .comment("Old Tinker's: 3")
+            .comment("Old Tinkers': 3")
             .defineInRange("lunge_cooldown", 0, 0, Integer.MAX_VALUE);
     private static final ForgeConfigSpec.DoubleValue LUNGE_SPEED_MOD = BUILDER
             .comment("What modifier to use in lunge speed calculations (horizontal velocity)")
             .comment("Default: 0.05")
-            .comment("Old Tinker's: 0.05")
+            .comment("Old Tinkers': 0.05")
             .defineInRange("lunge_speed_mod", 0.05, 0, Double.MAX_VALUE);
     private static final ForgeConfigSpec.DoubleValue LUNGE_SPEED_CAP = BUILDER
             .comment("The value to cap the lunging speed to")
             .comment("Default: 0.925")
-            .comment("Old Tinker's: 0.925")
+            .comment("Old Tinkers': 0.925")
             .defineInRange("lunge_speed_cap", 0.925, 0, Double.MAX_VALUE);
     private static final ForgeConfigSpec.DoubleValue LUNGE_JUMP_MOD = BUILDER
             .comment("Vertical velocity modifier for the lunge attack")
             .comment("Default: 0.02")
-            .comment("Old Tinker's: 0.02")
+            .comment("Old Tinkers': 0.02")
             .defineInRange("lunge_jump_mod", 0.02, 0, Double.MAX_VALUE);
     private static final ForgeConfigSpec.DoubleValue LUNGE_JUMP_CAP = BUILDER
             .comment("The value to cap the jump boost of the lunge attack to")
             .comment("Default: 0.56")
-            .comment("Old Tinker's: 0.56")
+            .comment("Old Tinkers': 0.56")
             .defineInRange("lunge_jump_cap", 0.56, 0, Double.MAX_VALUE);
     private static final ForgeConfigSpec.DoubleValue LUNGE_FOOD_EXHAUSTION = BUILDER
             .comment("Food exhaustion value to apply after using the lunge attack")
             .comment("Default: 0.2")
-            .comment("Old Tinker's: 0.2")
+            .comment("Old Tinkers': 0.2")
             .defineInRange("lunge_exhaustion", 0.2, 0, Double.MAX_VALUE);
     private static final ForgeConfigSpec.ConfigValue<String> CHARGE_ANIMATION = BUILDER
             .comment("The animation to use when charging the lunge attack")
             .comment("Options: BLOCK, NONE, DRINK, CUSTOM, BOW, BRUSH, CROSSBOW, EAT, TRIDENT, SPYGLASS, HORN")
-            .comment("Default/Old Tinker's: BOW")
+            .comment("Default/Old Tinkers': BOW")
             .define("charge_animation", "bow");
     private static final ForgeConfigSpec.BooleanValue PERFORM_RIPTIDE_ATTACK = BUILDER
             .comment("Should the longsword allow the user to perform riptide attacks?")
@@ -126,6 +131,7 @@ public class Config
 
     static final ForgeConfigSpec SPEC = BUILDER.build();
 
+    public static boolean prevent_lunge;
     public static int lunge_min_hold;
     public static int lunge_max_hold;
     public static int lunge_cooldown;
@@ -178,6 +184,7 @@ public class Config
         play_swing_sound = PLAY_SWING_SOUND.get().toLowerCase();
         swing_sound = SWING_SOUND.get();
         charge_bar_scaling = CHARGE_BAR_SCALING.get().toLowerCase();
+        prevent_lunge = PREVENT_LUNGE.get();
     }
 
 }

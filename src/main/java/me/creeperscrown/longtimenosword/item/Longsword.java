@@ -17,8 +17,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.event.entity.player.CriticalHitEvent;
 import slimeknights.tconstruct.library.tools.definition.ToolDefinition;
 import slimeknights.tconstruct.library.tools.helper.ToolDamageUtil;
 import slimeknights.tconstruct.tools.item.ModifiableSwordItem;
@@ -64,6 +62,9 @@ public class Longsword extends ModifiableSwordItem {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player p, InteractionHand h) {
         ItemStack stack = p.getItemInHand(h);
+
+        if(ToolDamageUtil.isBroken(stack) && Config.prevent_lunge) return InteractionResultHolder.pass(stack);
+
         p.startUsingItem(h);
         return InteractionResultHolder.consume(stack);
     }
