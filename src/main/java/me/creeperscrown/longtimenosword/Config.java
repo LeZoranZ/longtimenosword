@@ -28,9 +28,9 @@ public class Config
             .defineInRange("lunge_max_hold", 200, 0, Integer.MAX_VALUE);
     private static final ForgeConfigSpec.IntValue LUNGE_CD = BUILDER
             .comment("Longsword lunge ability cooldown (in ticks)")
-            .comment("Default: 0")
+            .comment("Default: 3")
             .comment("Old Tinkers': 3")
-            .defineInRange("lunge_cooldown", 0, 0, Integer.MAX_VALUE);
+            .defineInRange("lunge_cooldown", 3, 0, Integer.MAX_VALUE);
     private static final ForgeConfigSpec.DoubleValue LUNGE_SPEED_MOD = BUILDER
             .comment("What modifier to use in lunge speed calculations (horizontal velocity)")
             .comment("Default: 0.05")
@@ -78,7 +78,7 @@ public class Config
     private static final ForgeConfigSpec.BooleanValue DAMAGE_ON_LUNGE = BUILDER
             .comment("Should the longsword take damage when the player uses its lunge ability?")
             .comment("Default: false")
-            .define("damage_on_lunge", true);
+            .define("damage_on_lunge", false);
     private static final ForgeConfigSpec.IntValue LUNGE_DAMAGE_AMOUNT = BUILDER
             .comment("Defines the amount of damage the longsword receives when its lunge ability is used")
             .comment("Only effective if 'damage_on_lunge' is set to true")
