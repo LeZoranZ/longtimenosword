@@ -1,8 +1,9 @@
 package me.creeperscrown.longtimenosword.client.hud;
 
-import me.creeperscrown.longtimenosword.Config;
+import me.creeperscrown.longtimenosword.config.Config;
 import me.creeperscrown.longtimenosword.Longtimenosword;
-import me.creeperscrown.longtimenosword.item.Longsword;
+import me.creeperscrown.longtimenosword.config.ClientConfig;
+import me.creeperscrown.longtimenosword.modifiers.MModifiers;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
@@ -12,6 +13,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import slimeknights.tconstruct.library.tools.item.ModifiableItem;
+import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
 @Mod.EventBusSubscriber(modid = Longtimenosword.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class RiptideBar {
@@ -19,19 +22,21 @@ public class RiptideBar {
 
     @SubscribeEvent
     public static void onOverlayPre(RenderGuiOverlayEvent.Pre e){
-        if(!Config.perform_riptide_attack) return;
+        if(!Config.PERFORM_RIPTIDE_ATTACK.get()) return;
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.player;
         if(player==null) return;
         ItemStack stack = player.getUseItem();
         if(stack.isEmpty()) return;
-        if(!(stack.getItem() instanceof Longsword)) return;
+        if(!(stack.getItem() instanceof ModifiableItem)) return;
+        ToolStack ts = ToolStack.from(stack);
+        if(ts.getModifierLevel(MModifiers.LUNGING.getId())<=0) return;
 
         if(e.getOverlay().id().equals(ResourceLocation.withDefaultNamespace("experience_bar"))){
             e.setCanceled(true);
         }
 
-        int maxCharge = Config.riptide_threshold;
+        int maxCharge = Config.RIPTIDE_THRESHOLD.get();
         int charge = (stack.getItem()).getUseDuration(stack) - player.getUseItemRemainingTicks();
         renderChargeBar(mc, e.getGuiGraphics(), charge, maxCharge);
     }
@@ -46,7 +51,7 @@ public class RiptideBar {
 
         float f = Math.min(1F, (float) charge/maxCharge);
         float scale = f;
-        switch(Config.charge_bar_scaling){
+        switch(ClientConfig.charge_bar_scaling){
             case "linear": {scale=f; break;}
             case "quadratic": {scale=f*f; break;}
             case "cubic": {scale=f*f*f; break;}

@@ -1,10 +1,14 @@
 package me.creeperscrown.longtimenosword;
 
+import me.creeperscrown.longtimenosword.config.ClientConfig;
+import me.creeperscrown.longtimenosword.config.Config;
 import me.creeperscrown.longtimenosword.item.TinkersItems;
+import me.creeperscrown.longtimenosword.modifiers.MModifiers;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -49,6 +53,7 @@ public class Longtimenosword {
     public Longtimenosword() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(Longtimenosword::clientSetup);
+        MModifiers.MODIFIERS.register(modEventBus);
 
         ITEMS.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
@@ -57,6 +62,13 @@ public class Longtimenosword {
 
         TinkersItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC);
+        ModLoadingContext.get().registerExtensionPoint(
+                ConfigScreenHandler.ConfigScreenFactory.class,
+                ()-> new ConfigScreenHandler.ConfigScreenFactory(
+                        (mc, parent) -> new LTNSConfig(parent)
+                )
+        );
     }
 
     public static Item.Properties defaultItemProperties() {
